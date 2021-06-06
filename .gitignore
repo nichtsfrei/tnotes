@@ -1,2 +1,4 @@
 *.o
-tests/all_tests
+*.d
+tests/all
+tnotes

@@ -1,11 +1,14 @@
 #include <cgreen/cgreen.h>
 
 TestSuite *rules_parser_tests();
+TestSuite *rules_filter_tests();
 
 int main(int argc, char **argv)
 {
 	TestSuite *suite = create_test_suite();
+
 	add_suite(suite, rules_parser_tests());
+	add_suite(suite, rules_filter_tests());
 	if (argc > 1) {
 		return run_single_test(suite, argv[1], create_text_reporter());
 	}
