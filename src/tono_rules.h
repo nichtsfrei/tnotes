@@ -25,16 +25,16 @@ struct TenoRule {
 	enum TENO_RULE_ID *rule_ids;
 };
 
-// int teno_rules_cmp_fake(enum TENO_RULE_ID id, struct tm *date){
+// int tono_rules_cmp_fake(enum TENO_RULE_ID id, struct tm *date){
 
 struct TenoRule *
-teno_rules_parse_content(void *stream,
+tono_rules_parse_content(void *stream,
 			 int (*read)(void *),
 			 struct tm *today,
 			 int (*cmp)(enum TENO_RULE_ID, struct tm *, struct tm *)
 
 );
 
-void teno_rules_free(struct TenoRule *rule);
+void tono_rules_free(struct TenoRule *rule);
 
 #endif

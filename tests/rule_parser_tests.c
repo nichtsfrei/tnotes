@@ -1,5 +1,5 @@
-#include "../src/teno_rules.h"
-#include "../src/teno_rules_filter.h"
+#include "../src/tono_rules.h"
+#include "../src/tono_rules_filter.h"
 #include <cgreen/cgreen.h>
 #include <cgreen/mocks.h>
 #include <string.h>
@@ -36,7 +36,7 @@ Ensure(Rule, returns_rule_when_rule_got_found)
 	strcat(md, implicit_rules);
     fake_stream.data = (char*) &md;
     fake_stream.len = strlen(md); 
-	struct TenoRule *result = teno_rules_parse_content(
+	struct TenoRule *result = tono_rules_parse_content(
             &fake_stream,
             &fake_read,
 	     NULL, NULL);
@@ -56,12 +56,11 @@ Ensure(Rule, returns_rule_when_rule_got_found)
 		assert_equal(result->rule_datetimes[i].tm_mon, 0 + i);
 		assert_equal(result->rule_datetimes[i].tm_mday, 1 + i);
 	}
-	teno_rules_free(result);
+	tono_rules_free(result);
 }
 
 Ensure(Rule, returns_last_rule_when_md_ends_with_rule)
 {
-	unsigned int i;
     struct fake_stream fake_stream = {};
 	char md[254];
 	char header[] = "#Header\n\nsome description\n";
@@ -70,18 +69,17 @@ Ensure(Rule, returns_last_rule_when_md_ends_with_rule)
 	strcat(md, implicit_rules);
     fake_stream.data = (char*) &md;
     fake_stream.len = strlen(md); 
-	struct TenoRule *result = teno_rules_parse_content(
+	struct TenoRule *result = tono_rules_parse_content(
             &fake_stream,
             &fake_read,
 	     NULL, NULL);
 	assert_that(result, is_not_null);
 	assert_equal(*result->rule_amount, 4);
-	teno_rules_free(result);
+	tono_rules_free(result);
 }
 
 Ensure(Rule, ignores_false_positive)
 {
-	unsigned int i;
     struct fake_stream fake_stream = {};
 	char md[254];
 	char header[] = "#Header\n\non february from dusk until dawn\n";
@@ -94,13 +92,13 @@ Ensure(Rule, ignores_false_positive)
 	strcat(md, implicit_rules);
     fake_stream.data = (char*) &md;
     fake_stream.len = strlen(md); 
-	struct TenoRule *result = teno_rules_parse_content(
+	struct TenoRule *result = tono_rules_parse_content(
             &fake_stream,
             &fake_read,
 	     NULL, NULL);
 	assert_that(result, is_not_null);
 	assert_equal(*result->rule_amount, 7);
-	teno_rules_free(result);
+	tono_rules_free(result);
 }
 
 Ensure(Rule, filter_unfitting_rules)
@@ -112,10 +110,10 @@ Ensure(Rule, filter_unfitting_rules)
 	strcat(md, implicit_rules);
     fake_stream.data = (char*) &md;
     fake_stream.len = strlen(md); 
-	struct TenoRule *result = teno_rules_parse_content(
+	struct TenoRule *result = tono_rules_parse_content(
             &fake_stream,
             &fake_read,
-	     localtime(&monday), teno_rules_cmp);
+	     localtime(&monday), tono_rules_cmp);
 	assert_that(result, is_null);
 
 }

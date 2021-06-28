@@ -1,4 +1,4 @@
-#include "teno_rules.h"
+#include "tono_rules.h"
 
 #include <errno.h>
 #include <stdio.h>
@@ -44,7 +44,7 @@ struct ContentArray {
 	char *buf;
 };
 
-struct TenoRule *teno_rules_parse_content(void *stream,
+struct TenoRule *tono_rules_parse_content(void *stream,
 					  int (*read)(void *),
 					  struct tm *today,
 					  int (*cmp)(enum TENO_RULE_ID,
@@ -196,7 +196,7 @@ exit:
 	return result;
 }
 
-void teno_rules_free(struct TenoRule *rule)
+void tono_rules_free(struct TenoRule *rule)
 {
 	free(rule->rule_datetimes);
 	free(rule->rule_ids);

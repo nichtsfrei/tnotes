@@ -1,5 +1,5 @@
-#include "teno_rules.h"
-#include "teno_rules_filter.h"
+#include "tono_rules.h"
+#include "tono_rules_filter.h"
 #include <dirent.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -17,7 +17,7 @@ struct TenoRule *read_rule(char *path, struct tm *t)
 	struct TenoRule *tr = NULL;
 	if (f == NULL)
 		goto exit;
-	tr = teno_rules_parse_content(f, read, t, teno_rules_cmp);
+	tr = tono_rules_parse_content(f, read, t, tono_rules_cmp);
 exit:
 	if (f != NULL)
 		fclose(f);
@@ -62,7 +62,7 @@ exit:
 	if (dr != NULL)
 		closedir(dr);
 	if (r != NULL)
-		teno_rules_free(r);
+		tono_rules_free(r);
 	return result;
 }
 

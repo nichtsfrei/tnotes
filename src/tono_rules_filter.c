@@ -1,9 +1,9 @@
-#include "teno_rules_filter.h"
+#include "tono_rules_filter.h"
 #include <time.h>
 #define GUARD_RULE_ID(n, m)                                                    \
 	if ((n) != (m))                                                        \
 	return TENO_RULE_ERRNO_UNFITTING_CMP
-int teno_rules_cmp_on_id(enum TENO_RULE_ID id,
+int tono_rules_cmp_on_id(enum TENO_RULE_ID id,
 			 struct tm *date,
 			 struct tm *input_date)
 {
@@ -16,7 +16,7 @@ exit:
 	return result;
 }
 
-int teno_rules_cmp_from_id(enum TENO_RULE_ID id,
+int tono_rules_cmp_from_id(enum TENO_RULE_ID id,
 			   struct tm *date,
 			   struct tm *input_date)
 {
@@ -30,7 +30,7 @@ exit:
 	return result;
 }
 
-int teno_rules_cmp_until_id(enum TENO_RULE_ID id,
+int tono_rules_cmp_until_id(enum TENO_RULE_ID id,
 			    struct tm *date,
 			    struct tm *input_date)
 {
@@ -44,7 +44,7 @@ exit:
 	return result;
 }
 
-int teno_rules_cmp_weekday_id(enum TENO_RULE_ID id,
+int tono_rules_cmp_weekday_id(enum TENO_RULE_ID id,
 			      struct tm *date,
 			      struct tm *input_date)
 {
@@ -57,7 +57,7 @@ exit:
 	return result;
 }
 
-int teno_rules_cmp_weekend_id(enum TENO_RULE_ID id,
+int tono_rules_cmp_weekend_id(enum TENO_RULE_ID id,
 			      struct tm *date,
 			      struct tm *input_date)
 {
@@ -70,24 +70,24 @@ exit:
 	return result;
 }
 
-int teno_rules_cmp(enum TENO_RULE_ID id, struct tm *date, struct tm *input)
+int tono_rules_cmp(enum TENO_RULE_ID id, struct tm *date, struct tm *input)
 {
 	int result;
 	switch (id) {
 	case TENO_RULE_ON:
-		result = teno_rules_cmp_on_id(id, date, input);
+		result = tono_rules_cmp_on_id(id, date, input);
 		break;
 	case TENO_RULE_FROM:
-		result = teno_rules_cmp_from_id(id, date, input);
+		result = tono_rules_cmp_from_id(id, date, input);
 		break;
 	case TENO_RULE_UNTIL:
-		result = teno_rules_cmp_until_id(id, date, input);
+		result = tono_rules_cmp_until_id(id, date, input);
 		break;
 	case TENO_RULE_ON_WEEKDAY:
-		result = teno_rules_cmp_weekday_id(id, date, input);
+		result = tono_rules_cmp_weekday_id(id, date, input);
 		break;
 	case TENO_RULE_ON_WEEKEND:
-		result = teno_rules_cmp_weekend_id(id, date, input);
+		result = tono_rules_cmp_weekend_id(id, date, input);
 		break;
 	default:
 		result = -1;

@@ -1,5 +1,5 @@
-#include "../src/teno_rules.h"
-#include "../src/teno_rules_filter.h"
+#include "../src/tono_rules.h"
+#include "../src/tono_rules_filter.h"
 #include <cgreen/cgreen.h>
 #include <cgreen/mocks.h>
 #include <errno.h>
@@ -13,13 +13,13 @@ Ensure(Filter, returns_null_when_using_unknown_rule_id)
 {
 	unsigned int i;
 	int (*p[])(enum TENO_RULE_ID, struct tm *, struct tm *) = {
-	    &teno_rules_cmp_on_id,
-	    &teno_rules_cmp_from_id,
-	    &teno_rules_cmp_until_id,
-	    //&teno_rules_cmp_holiday_id,
-	    //&teno_rules_cmp_vacation_id,
-	    &teno_rules_cmp_weekday_id,
-	    &teno_rules_cmp_weekend_id};
+	    &tono_rules_cmp_on_id,
+	    &tono_rules_cmp_from_id,
+	    &tono_rules_cmp_until_id,
+	    //&tono_rules_cmp_holiday_id,
+	    //&tono_rules_cmp_vacation_id,
+	    &tono_rules_cmp_weekday_id,
+	    &tono_rules_cmp_weekend_id};
 	int size = sizeof p / sizeof *p;
 	assert_true(size > 0);
 	for (i = 0; i < size; i++) {
@@ -35,13 +35,13 @@ Ensure(Filter, return_0_on_match)
 	time_t tuesday = MONDAY + 24 * 60 * 60;
 	time_t saturday = MONDAY - 2 * 24 * 60 * 60;
 	int (*p[])(enum TENO_RULE_ID, struct tm *, struct tm *) = {
-	    &teno_rules_cmp_on_id,
-	    &teno_rules_cmp_from_id,
-	    &teno_rules_cmp_until_id,
-	    //&teno_rules_cmp_holiday_id,
-	    //&teno_rules_cmp_vacation_id,
-	    &teno_rules_cmp_weekday_id,
-	    &teno_rules_cmp_weekend_id};
+	    &tono_rules_cmp_on_id,
+	    &tono_rules_cmp_from_id,
+	    &tono_rules_cmp_until_id,
+	    //&tono_rules_cmp_holiday_id,
+	    //&tono_rules_cmp_vacation_id,
+	    &tono_rules_cmp_weekday_id,
+	    &tono_rules_cmp_weekend_id};
 	enum TENO_RULE_ID r[] = {TENO_RULE_ON,
 				 TENO_RULE_FROM,
 				 TENO_RULE_UNTIL,
