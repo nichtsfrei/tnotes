@@ -3,6 +3,10 @@ OUTPUT_OPTION = -Wall -MMD -MP -o $@
 CFLAGS = -Wall
 
 
+ifeq ($(out),)
+    out := /usr/local
+endif
+
 src = $(wildcard src/*.c)
 src_o = $(src:.c=.o)
 test_src = $(wildcard tests/*.c)
@@ -22,3 +26,7 @@ tests/all: $(tobj)
 
 clean:
 	rm -f $(tobj) $(deps) tests/all tnotes
+
+install:
+	install -d $(out)/bin
+	install -p ./tnotes $(out)/bin/tnotes
